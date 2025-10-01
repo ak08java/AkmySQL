@@ -1,0 +1,84 @@
+                                       HAVING Cluase
+
+SQL having clause is similar to the WHERE clause;
+
+ either they are both used to filter row in a table based on condition 
+
+Having clause was added to SQL because the WHERE keyword connot be used with aggregate functions.
+
+The having clause filter the grouped rows.
+
+The Having clause must always be followed by GROUP BY clause.
+
+It can also contain multiple conditions filter the grouped result.
+
+These condition seperated by various operation like AND OR etc.
+
+Sytax
+------
+SELECT coulmn _name(s), function_name(argument) 
+FROM table_name
+WHERE condition
+GROUP BY column_nmae
+HAVING condition
+ORDER BY column_name;
+
+Q1) Find the number of employee working in each department as total_employee froom the table
+ and the number of employee should more than one.Also sort result by total_employee
+SELECT  department, COUNT(*) AS total_employee  FROM employee GROUP BY department HAVING COUNT(*) > 1 ORDER BY total_employee;
+
+OR
+
+SELECT department, COUNT(*) AS total_employee  FROM employee GROUP BY department HAVING total_employee > 1 ORDER BY total_employee;
+
+Sytax
+-----
+SELECT column_name function_name(argument) 
+FROM table_name
+WHERE condition
+GROUP BY column_name
+HAVING condition1
+AND| OR conditon2
+AND | OR condition2
+AND | OR condition3
+ORDER BY column_name;
+
+Q2) write SQL query to calculate total salary and the numberof employee in each department
+ where total salary more than 5000 and numbr of employee is other than 1
+SELECT SUM(salary) AS total_salary, COUNT(*)  
+FROM employee 
+GROUP BY department
+HAVING total_salary >5000 AND Count(*) != 1; (thsi query not working postage SQL)
+
+OR
+
+SELECT department, SUM(salary) AS total_salary, COUNT(*)  
+FROM employee 
+GROUP BY department
+HAVING SUM(salary) > 5000 AND COUNT(*) != 1;
+
+Sytax
+------
+SELECT column_name function_name(argument) 
+FROM table_name
+WHERE condition
+GROUP BY column_name
+HAVING coulmn name  between value1 AND value2
+AND| OR conditon2
+AND | OR condition2
+AND | OR condition3
+ORDER BY column_name;
+
+Q3) Write SQL query to retrive the total salary of the employee in each department of a company,
+ where the total salary of each department falls between 2000 and 6000 and the department field not null
+
+SELECT SUM(salary) 
+FROM employee 
+WHERE department IS NOT NULL
+GROUP BY department 
+HAVING SUM(salary) BETWEEN 2000 AND 60000;
+
+
+
+
+

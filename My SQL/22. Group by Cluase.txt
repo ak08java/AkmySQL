@@ -1,0 +1,43 @@
+GROUP BY Cluase
+---------------
+GROUP By statement is used for organize or arranging data into group that have identical value for one or more columns.
+
+GROUP By statement is often used with aggregate function [COUNT(), SUM(), AVG(), MIN(), MAX()]
+ to group the result-set by one more columns.
+
+Null values are consindered equivalet for grouping purpose.
+
+importace
+---------
+GROUP BY cluase is mostly used with the select statement.
+
+IN the query GROUP BY cluase is placed after where clause.
+
+in Query GROUP BY cluase is placed before HAVING & ORDER BY cluase if used any.
+
+sytax
+-----
+SELECT coulmn _name, function_name(argument)  
+FROM table_name WHERE condition
+ GROUP BY column_name 
+HAVING condition ORDER BY column_name
+
+Q1) Find the number of employee working in each department from the "employee" table.
+SELECT COUNT(*) 
+FROM employee
+ GROUP BY department;
+
+Q2) Find the sum of salary department from employee table and sort the result in ascending order by sum of salary?
+SELECT SUM(salary) As sumsalary FROM employee GROUP BY department ORDER BY sumsalary;
+
+Q3) Find the sum of salary of each department from employee table except 'HR' department and department should not be NULL.
+ SELECT department, SUM(salary)
+     FROM employee
+     WHERE department != 'HR' AND department IS NOT NULL
+     GROUP BY department;
+
+Q4) Find the number of employee who has same department and salary from 'employee' table sort the result by department in descending order.
+
+SELECT department, salary,  COUNT(*) 
+FROM employee GROUP BY department, salary
+ORDER BY department ASC;
